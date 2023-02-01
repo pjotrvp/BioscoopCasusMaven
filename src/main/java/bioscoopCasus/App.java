@@ -18,10 +18,8 @@ public class App
         order matrixOrder = new order(1, false);
         matrixOrder.addSeatReservation(matrixTicket1);
         matrixOrder.addSeatReservation(matrixTicket2);
-        matrixOrder.calculatePrice();
-        System.out.println("main invoked");
         try {
-            matrixOrder.export(ticketExportFormat.PLAINTEXT);
+            matrixOrder.export(ticketExportFormat.JSON);
         } catch (IOException e) {
             // TODO Auto-generated catch block
             e.printStackTrace();
