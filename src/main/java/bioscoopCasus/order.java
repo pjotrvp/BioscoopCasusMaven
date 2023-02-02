@@ -40,21 +40,21 @@ public class order {
             System.out.println("weekend");
         }
 
-        for (movieTicket movieTicket : tickets) {
-            if (isStudentOrder && movieTicket.isPremiumTicket()) {
-                price += movieTicket.getPrice() + 2;
-            } else if (!isStudentOrder && movieTicket.isPremiumTicket()) {
-                price += movieTicket.getPrice() + 3;
-            } else {
-                price += movieTicket.getPrice();
-            }
-        }
-
         if (isStudentOrder || (!isStudentOrder && !weekend)) {
             for (int i = 0; i < amountOfTickets; i++) {
                 if (i % 2 == 0) {
                     price += tickets.get(i).getPrice();
+                } else {
+                    tickets.remove(i);
                 }
+            }
+        }
+
+        for (movieTicket movieTicket : tickets) {
+            if (isStudentOrder && movieTicket.isPremiumTicket()) {
+                price += 2;
+            } else if (!isStudentOrder && movieTicket.isPremiumTicket()) {
+                price += 3;
             }
         }
 

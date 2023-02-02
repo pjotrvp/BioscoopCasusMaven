@@ -18,7 +18,7 @@ public class orderTest {
     movieScreening SundayScreening = new movieScreening(theMatrix, LocalDateTime.parse("2023-10-15T18:30"), 4);
     movieTicket matrixTicket1 = new movieTicket(SundayScreening, 1, 1, false);
     movieTicket matrixTicket2 = new movieTicket(SundayScreening, 1, 2, false);
-    order studentOrder = new order(1, false);
+    order studentOrder = new order(1, true);
     order regularOrder = new order(2, false);
 
     @Test
