@@ -37,7 +37,6 @@ public class order {
 
         if (movieDay == "FRIDAY" || movieDay == "SATURDAY" || movieDay == "SUNDAY") {
             weekend = true;
-            System.out.println("weekend");
         }
 
         if (isStudentOrder || (!isStudentOrder && !weekend)) {
@@ -45,15 +44,15 @@ public class order {
                 if (i % 2 == 0) {
                     price += tickets.get(i).getPrice();
                 } else {
-                    tickets.remove(i);
+                    tickets.get(i).setFree();
                 }
             }
         }
 
         for (movieTicket movieTicket : tickets) {
-            if (isStudentOrder && movieTicket.isPremiumTicket()) {
+            if (isStudentOrder && movieTicket.isPremiumTicket() && !movieTicket.isFree()) {
                 price += 2;
-            } else if (!isStudentOrder && movieTicket.isPremiumTicket()) {
+            } else if (!isStudentOrder && movieTicket.isPremiumTicket() && !movieTicket.isFree()) {
                 price += 3;
             }
         }
