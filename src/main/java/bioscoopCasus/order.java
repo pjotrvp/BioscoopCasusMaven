@@ -47,6 +47,10 @@ public class order {
                     tickets.get(i).setFree();
                 }
             }
+        } else {
+            for (movieTicket movieTicket : tickets) {
+                price += movieTicket.getPrice();
+            }
         }
 
         for (movieTicket movieTicket : tickets) {

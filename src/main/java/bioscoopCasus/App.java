@@ -12,16 +12,13 @@ public class App {
         movie theMatrix = new movie("The Matrix");
         movieScreening SundayScreening = new movieScreening(theMatrix, LocalDateTime.parse("2023-10-15T18:30"), 4);
         movieTicket matrixTicket1 = new movieTicket(SundayScreening, 1, 1, false);
-        movieTicket matrixTicket2 = new movieTicket(SundayScreening, 1, 2, true);
+        movieTicket matrixTicket2 = new movieTicket(SundayScreening, 1, 2, false);
         movieTicket matrixTicket3 = new movieTicket(SundayScreening, 1, 3, false);
         movieTicket matrixTicket4 = new movieTicket(SundayScreening, 1, 4, false);
         movieTicket matrixTicket5 = new movieTicket(SundayScreening, 1, 5, false);
-        order studentOrder = new order(1, true);
+        order studentOrder = new order(1, false);
         studentOrder.addSeatReservation(matrixTicket1);
         studentOrder.addSeatReservation(matrixTicket2);
-        studentOrder.addSeatReservation(matrixTicket3);
-        studentOrder.addSeatReservation(matrixTicket4);
-        studentOrder.addSeatReservation(matrixTicket5);
         studentOrder.calculatePrice();
         try {
             studentOrder.export(ticketExportFormat.JSON);
