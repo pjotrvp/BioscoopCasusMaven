@@ -18,6 +18,7 @@ public class orderTest {
     movieScreening SundayScreening = new movieScreening(theMatrix, LocalDateTime.parse("2023-10-15T18:30"), 4);
     movieTicket matrixTicket1 = new movieTicket(SundayScreening, 1, 1, false);
     movieTicket matrixTicket2 = new movieTicket(SundayScreening, 1, 2, false);
+    movieTicket matrixTicket3 = new movieTicket(SundayScreening, 1, 3, false);
     order studentOrder = new order(1, true);
     order regularOrder = new order(2, false);
 
@@ -27,5 +28,22 @@ public class orderTest {
         studentOrder.addSeatReservation(matrixTicket2);
         double totalprice = studentOrder.calculatePrice();
         assertEquals(4.0, totalprice, 0.0);
+    }
+
+    @Test
+    public void ThreeFourEuroStudentTicketsShouldCostEightEuro(){
+        studentOrder.addSeatReservation(matrixTicket1);
+        studentOrder.addSeatReservation(matrixTicket2);
+        studentOrder.addSeatReservation(matrixTicket3);
+        double totalprice = studentOrder.calculatePrice();
+        assertEquals(8.0, totalprice, 0.0);
+    }
+
+    @Test
+    public void TwoFourEuroRegularTicketsShouldCostEightEuro() {
+        regularOrder.addSeatReservation(matrixTicket1);
+        regularOrder.addSeatReservation(matrixTicket2);
+        double totalprice = regularOrder.calculatePrice();
+        assertEquals(8.0, totalprice, 0.0);
     }
 }
