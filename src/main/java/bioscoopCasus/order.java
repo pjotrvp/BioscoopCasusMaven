@@ -14,6 +14,7 @@ public class order {
     private int orderNr;
     private boolean isStudentOrder;
     private ArrayList<movieTicket> tickets;
+    public boolean weekend = false;
 
     public order(int orderNr, boolean isStudentOrder) {
         this.orderNr = orderNr;
@@ -33,7 +34,6 @@ public class order {
         double price = 0;
         int amountOfTickets = tickets.size();
         String movieDay = tickets.get(0).movieScreening.getDateAndTime().getDayOfWeek().toString();
-        boolean weekend = false;
 
         if (movieDay == "FRIDAY" || movieDay == "SATURDAY" || movieDay == "SUNDAY") {
             weekend = true;
