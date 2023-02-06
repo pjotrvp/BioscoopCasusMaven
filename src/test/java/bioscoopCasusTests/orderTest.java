@@ -185,7 +185,6 @@ public class orderTest {
     }
 
     @Test
-    // 6 regular tickets
     public void SixFourEuroRegularTicketsInTheWeekendShouldCostTwentyOnePointSixEuro() {
         regularOrder.addSeatReservation(matrixTicketSunday1);
         regularOrder.addSeatReservation(matrixTicketSunday2);
@@ -198,7 +197,6 @@ public class orderTest {
     }
 
     @Test
-    // 6 regular tickets outside the weekend
     public void SixFourEuroRegularTicketsOutsideTheWeekendShouldCostTwelveEuro() {
         regularOrder.addSeatReservation(matrixTicketMonday1);
         regularOrder.addSeatReservation(matrixTicketMonday2);
