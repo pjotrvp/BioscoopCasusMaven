@@ -28,7 +28,7 @@ public class orderTest {
     movieTicket matrixTicketTuesday = new movieTicket(TuesdayScreening, 1, 1, false);
     movieTicket matrixTicketWednesday = new movieTicket(WednesdayScreening, 1, 1, false);
     movieTicket matrixTicketThursday = new movieTicket(ThursdayScreening, 1, 1, false);
-    movieTicket matrixTicketFriday = new movieTicket(FridayScreening, 1, 1, false);
+    movieTicket matrixTicketFriday = new movieTicket(FridayScreening, 1, 1, true);
     movieTicket matrixTicketSaturday = new movieTicket(SaturdayScreening, 1, 1, false);
     movieTicket matrixTicketSunday1 = new movieTicket(SundayScreening, 1, 1, false);
     movieTicket matrixTicketSunday2 = new movieTicket(SundayScreening, 1, 2, false);
@@ -107,7 +107,7 @@ public class orderTest {
         assertEquals(true, weekend);
     }
 
-    // Tests for checking the price
+    // Tests for checking the price without premium seats
     @Test
     public void TwoFourEuroStudentTicketsShouldCostFourEuro() {
         studentOrder.addSeatReservation(matrixTicketSunday1);
@@ -148,5 +148,85 @@ public class orderTest {
         regularOrder.addSeatReservation(matrixTicketMonday3);
         double totalprice = regularOrder.calculatePrice();
         assertEquals(8.0, totalprice, 0.0);
+    }
+
+    @Test
+    public void TenFourEuroRegularTicketsInTheWeekendShouldCostThirtySixEuro() {
+        regularOrder.addSeatReservation(matrixTicketSunday1);
+        regularOrder.addSeatReservation(matrixTicketSunday2);
+        regularOrder.addSeatReservation(matrixTicketSunday3);
+        regularOrder.addSeatReservation(matrixTicketSunday1);
+        regularOrder.addSeatReservation(matrixTicketSunday2);
+        regularOrder.addSeatReservation(matrixTicketSunday3);
+        regularOrder.addSeatReservation(matrixTicketSunday1);
+        regularOrder.addSeatReservation(matrixTicketSunday2);
+        regularOrder.addSeatReservation(matrixTicketSunday3);
+        regularOrder.addSeatReservation(matrixTicketSunday1);
+        double totalprice = regularOrder.calculatePrice();
+        assertEquals(36.0, totalprice, 0.0);
+    }
+
+    @Test
+    public void TenFourEuroRegularTicketsInTheWeekendWithOnePremiumSeatShouldCostThirtyEightPointSevenEuro() {
+        regularOrder.addSeatReservation(matrixTicketSunday1);
+        regularOrder.addSeatReservation(matrixTicketSunday2);
+        regularOrder.addSeatReservation(matrixTicketSunday3);
+        regularOrder.addSeatReservation(matrixTicketSunday1);
+        regularOrder.addSeatReservation(matrixTicketSunday2);
+        regularOrder.addSeatReservation(matrixTicketSunday3);
+        regularOrder.addSeatReservation(matrixTicketSunday1);
+        regularOrder.addSeatReservation(matrixTicketSunday2);
+        regularOrder.addSeatReservation(matrixTicketSunday3);
+        regularOrder.addSeatReservation(matrixTicketFriday);
+        double totalprice = regularOrder.calculatePrice();
+        assertEquals(38.7, totalprice, 0.0);
+    }
+
+    @Test
+    public void TenFourEuroRegularTicketsOutsideTheWeekendShouldCostTwentyEuro() {
+        regularOrder.addSeatReservation(matrixTicketMonday1);
+        regularOrder.addSeatReservation(matrixTicketMonday2);
+        regularOrder.addSeatReservation(matrixTicketMonday3);
+        regularOrder.addSeatReservation(matrixTicketMonday1);
+        regularOrder.addSeatReservation(matrixTicketMonday2);
+        regularOrder.addSeatReservation(matrixTicketMonday3);
+        regularOrder.addSeatReservation(matrixTicketMonday1);
+        regularOrder.addSeatReservation(matrixTicketMonday2);
+        regularOrder.addSeatReservation(matrixTicketMonday3);
+        regularOrder.addSeatReservation(matrixTicketMonday1);
+        double totalprice = regularOrder.calculatePrice();
+        assertEquals(20.0, totalprice, 0.0);
+    }
+
+    // Tests for checking the price with premium seats
+    @Test
+    public void TwoFourEuroRegularTicketsWithOnePremiumSeatInTheWeekendShouldCostElevenEuro() {
+        regularOrder.addSeatReservation(matrixTicketSunday1);
+        regularOrder.addSeatReservation(matrixTicketFriday);
+        double totalprice = regularOrder.calculatePrice();
+        assertEquals(11.0, totalprice, 0.0);
+    }
+
+    @Test
+    public void TwoFourEuroRegularTicketsWithOnePremiumSeatOutsideTheWeekendShouldCostFourEuro() {
+        regularOrder.addSeatReservation(matrixTicketMonday1);
+        regularOrder.addSeatReservation(matrixTicketThursday);
+        double totalprice = regularOrder.calculatePrice();
+        assertEquals(4.0, totalprice, 0.0);
+    }
+
+    @Test
+    public void TwoFourEuroStudentTicketsWithOnePremiumSeatShouldCostFourEuro() {
+        studentOrder.addSeatReservation(matrixTicketSunday1);
+        studentOrder.addSeatReservation(matrixTicketFriday);
+        double totalprice = studentOrder.calculatePrice();
+        assertEquals(4.0, totalprice, 0.0);
+    }
+
+    @Test
+    public void OneFourEuroStudentTicketWithOnePremiumSeatShouldCostSixEuro() {
+        studentOrder.addSeatReservation(matrixTicketFriday);
+        double totalprice = studentOrder.calculatePrice();
+        assertEquals(6.0, totalprice, 0.0);
     }
 }
