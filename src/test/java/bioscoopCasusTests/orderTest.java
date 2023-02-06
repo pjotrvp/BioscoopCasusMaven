@@ -224,7 +224,6 @@ public class orderTest {
     }
 
     @Test
-    // 5 regular tickets in the weekend with 1 premium seat
     public void FiveFourEuroRegularTicketsInTheWeekendWithOnePremiumSeatShouldCostTwentyThreeEuro() {
         regularOrder.addSeatReservation(matrixTicketSunday1);
         regularOrder.addSeatReservation(matrixTicketSunday2);
